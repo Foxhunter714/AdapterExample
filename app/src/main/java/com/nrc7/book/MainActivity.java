@@ -1,6 +1,7 @@
 package com.nrc7.book;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
@@ -18,9 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        // Fragment anterior, el cual se quiere dejar de mostrar
+        Fragment oldFragment = getSupportFragmentManager().findFragmentByTag("detailsFr");
         getSupportFragmentManager().beginTransaction()
+                // Fragment actual que se desea mostrar
                 .add(R.id.container, BookListFragment.newInstance("",""), "listFragment")
-                .remove(getSupportFragmentManager().findFragmentByTag("detailsFr"))
+                .remove(oldFragment)
                 .commit();
     }
 }

@@ -10,7 +10,6 @@ public class DataSource {
 
     public List<Book> getBooks() {
         List<Book> books = new ArrayList<>();
-
         for (int i = 0; i < 20; i++) {
             Book book = new Book();
             book.setName("Libro " + i);
@@ -32,6 +31,5 @@ public class DataSource {
         books.add(new Book("The Old Man and the Sea","Ernest Hemingway"));
         return books;
     }
-
 
 }

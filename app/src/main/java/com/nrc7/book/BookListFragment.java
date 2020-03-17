@@ -65,16 +65,14 @@ public class BookListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.recycler);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView = view.findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
 
         // Lista de libros
         final List<Book> bookList = new DataSource().getAllBooks();
         adapter = new BookAdapter(bookList, getContext());
-
         recyclerView.setAdapter(adapter);
 
         // Evento onClick
@@ -84,11 +82,13 @@ public class BookListFragment extends Fragment {
                 Book book = bookList.get(position);
                 // Toast.makeText(getContext(), book.getName(), Toast.LENGTH_SHORT).show();
 
-                // Intercambio de Fragmentos
+                // Llamar a FragmentManager
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                // Intercambio de Fragmentos en pantalla
                 fragmentManager.beginTransaction()
                         // Entregar parametros al nuevo Fragment
                         .add(R.id.container, DetailsFragment.newInstance(book.getName(),book.getAuthor()), "detailsFr")
+                        // Ocultar fragment antiguo por su tag
                         .remove(fragmentManager.findFragmentByTag("listFragment"))
                         .commit();
             }
