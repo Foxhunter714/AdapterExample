@@ -72,8 +72,8 @@ public class BookListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         // Lista de libros
-        final DataSource source = new DataSource();
-        adapter = new BookAdapter(new DataSource().getBooks(), getContext());
+        final List<Book> bookList = new DataSource().getAllBooks();
+        adapter = new BookAdapter(bookList, getContext());
 
         recyclerView.setAdapter(adapter);
 
@@ -81,7 +81,7 @@ public class BookListFragment extends Fragment {
         adapter.setOnItemClickListener(new BookAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Book book = source.getBooks().get(position);
+                Book book = bookList.get(position);
                 // Toast.makeText(getContext(), book.getName(), Toast.LENGTH_SHORT).show();
 
                 // Intercambio de Fragmentos
