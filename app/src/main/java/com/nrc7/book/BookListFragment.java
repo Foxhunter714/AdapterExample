@@ -21,7 +21,6 @@ import com.nrc7.book.model.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BookListFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";

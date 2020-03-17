@@ -44,7 +44,6 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.MyViewHolder>{
         return bookList.size();
     }
 
-
     public interface OnItemClickListener {
         void onItemClick(int position);
     }

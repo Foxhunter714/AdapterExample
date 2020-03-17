@@ -21,10 +21,18 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         // Fragment anterior, el cual se quiere dejar de mostrar
         Fragment oldFragment = getSupportFragmentManager().findFragmentByTag("detailsFr");
-        getSupportFragmentManager().beginTransaction()
-                // Fragment actual que se desea mostrar
-                .add(R.id.container, BookListFragment.newInstance("",""), "listFragment")
-                .remove(oldFragment)
-                .commit();
+        // Si no hay un fragment de detalle, cerrar la app
+        if (oldFragment == null) {
+            super.onBackPressed();
+        }
+        // Si hay fragment de detalle, quitarlo y poner el de lista
+        else {
+            getSupportFragmentManager().beginTransaction()
+                    // Fragment actual que se desea mostrar
+                    .add(R.id.container, BookListFragment.newInstance("",""), "listFragment")
+                    .remove(oldFragment)
+                    .commit();
+        }
+
     }
 }
